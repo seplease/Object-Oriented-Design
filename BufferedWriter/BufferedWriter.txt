@@ -1,0 +1,43 @@
+public static void main(String[] args) throws IOException {
+		BufferedReader in = null;
+		PrintWriter out = null;
+		long startTime1 = System.currentTimeMillis();
+		
+		try {
+			in = new BufferedReader(new FileReader("input.txt"));
+			out = new PrintWriter(new FileWriter("output1.txt"));
+			String l;
+			while(( l= in.readLine()) != null ) {
+				out.println(l);
+			}
+		} finally {
+			if(in != null) {
+				in.close();				
+			}
+			if (out != null) {
+				out.close();
+			}
+		}
+		System.out.print("BufferedReader :");
+		System.out.println(	System.currentTimeMillis() - startTime1);
+
+		FileReader in2 = null;
+		long startTime2 = System.currentTimeMillis();
+		try {
+			in2 = new FileReader("input.txt");
+			out = new PrintWriter(new FileWriter("output2.txt"));
+			int l;
+			while(( l= in2.read()) != -1 ) {
+				out.println(l);  //write(l) 도 가능
+			}
+		} finally {
+			if(in2 != null) {
+				in2.close();				
+			}
+			if (out != null) {
+				out.close();
+			}
+		}
+		System.out.print("FileReader :");
+		System.out.println(	System.currentTimeMillis() - startTime2);
+	}
